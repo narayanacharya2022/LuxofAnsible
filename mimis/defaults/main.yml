@@ -1,0 +1,7 @@
+---
+# defaults file for mimis
+
+
+database_source_dir: $MIRIS_HOME/packages
+database_bkp_dir: $MIRIS_HOME/backups/drop8
+miris_binary_file: Millennium_FXEXCH_1.0.7.0.i2_MIRIS_v1.0.tar.gz

@@ -1,0 +1,29 @@
+---
+# tasks file for mimis
+
+
+
+- name: "Check required directories exist"
+  stat: path="{{ database_source_dir }}"
+  register: initial_file_check
+  become: true
+
+- name: "Create Backup databse directory"
+  file:
+    path: "{{ database_bkp_dir }}"
+    state: directory
+  become: true
+
+- name: "backup the existing data of package directory"
+  copy:
+   src: "{{ database_source_dir }}"
+   dest: "{{ database_bkp_dir }}"
+
+- name: " extract the  tar file "
+  unarchive:
+    src: "/opt/dtexch1/packages/drop8/trading/{{ miris_binary_file }}"
+    dest: "{{ database_source_dir }}"
+    remote_src: yes
+    list_files: yes
+    owner: root
+    group: root
